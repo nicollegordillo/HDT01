@@ -69,7 +69,7 @@ public class Radio implements IRadio {
 
 	
 	/** 
-	 * @param )if(freq=="AM"
+	 * @param 
 	 */
 	//Cambia la emisora para adelante
 	@Override
