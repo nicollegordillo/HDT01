@@ -1,3 +1,4 @@
+import java.math.RoundingMode;
 import java.util.ArrayList;
 
 //
@@ -16,7 +17,8 @@ import java.util.ArrayList;
 
 public class Radio implements IRadio {
 	private String freq;
-	private double actualStation;
+	private double actualStationFM;
+	private int actualStationAM;
 	private String estado;
 	private ArrayList<Double> emisorasFM = new ArrayList<Double>();
 	private ArrayList<Integer> emisorasAM = new ArrayList<Integer>();
@@ -55,12 +57,13 @@ public class Radio implements IRadio {
 
 		}
 		else if(freq=="FM"){
-			if(actualStation==107.9){
-				actualStation=87.9;
+			if(actualStationFM==107.9){
+				actualStationFM=87.9;
 
 			}
 			else{
-				actualStation=actualStation+0.2;
+				actualStationFM=actualStationFM+0.2;
+				actualStationFM=Math.round((actualStationFM) * 10) / 10.0;
 			}
 		}
 		else{
@@ -74,12 +77,14 @@ public class Radio implements IRadio {
 
 		}
 		else if(freq=="FM"){
-			if(actualStation==87.9){
-				actualStation=107.9;
+			if(actualStationFM==87.9){
+				actualStationFM=107.9;
+				
 
 			}
 			else{
-				actualStation=actualStation-0.2;
+				actualStationFM=actualStationFM-0.2;
+				actualStationFM=Math.round((actualStationFM) * 10) / 10.0;
 			}
 		}
 		else{
@@ -88,20 +93,19 @@ public class Radio implements IRadio {
 	}
 	@Override
 	public double getFMActualStation() {
-		return actualStation;
+		return actualStationFM;
 	}
 	@Override
 	public int getAMActualStation() {//**
-	//	return actualStation;
-		return 0;
+		return actualStationAM;
 	}
 	@Override
 	public void setFMActualStation(double actualStation) {
-		this.actualStation = actualStation;
+		this.actualStationFM = actualStation;
 	}
 	@Override
 	public void setAMActualStation(int actualStation) {//**
-		this.actualStation= actualStation;
+		this.actualStationAM= actualStation;
 	}
 	@Override
 	public void saveFMStation(double actualStation, int slot) {//**
@@ -119,7 +123,7 @@ public class Radio implements IRadio {
 	//Selecciona la emisora en el slot deseado FM
 	@Override
 	public double getFMSlot(int slot) {
-		actualStation= emisorasFM.get(slot);
+		actualStationFM= emisorasFM.get(slot);
 		return emisorasFM.get(slot);
 	}
 
@@ -132,14 +136,14 @@ public class Radio implements IRadio {
 	public Radio() {
 		freq="AM";
 		slot=0;
-		actualStation=87.9;
+		actualStationFM=87.9;
 		estado="off";
 	}
 	
 	public Radio(String freq, int slot, double actualStation, String estado) {
 		this.freq=freq;
 		this.slot=slot;
-		this.actualStation=actualStation;
+		this.actualStationFM=actualStation;
 		this.estado=estado;
 	}
 	
