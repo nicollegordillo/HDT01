@@ -72,6 +72,9 @@ public class Principal {
 						slot+=1;
 					}
 					else if(op2==5){
+						System.out.println("Ingrese el número donde se encuentra la emisora que desea escuchar");
+						slot=teclado.nextInt()-1;
+						teclado.nextLine();
 						if(miradio.getFrequence()=="AM"){
 							System.out.println("Emisora seleccionada: "+miradio.getAMSlot(slot));
 						}
