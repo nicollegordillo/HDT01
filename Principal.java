@@ -23,10 +23,12 @@ public class Principal {
 		int op1;
 		int op2;
 		int slot=0;
+		String estatus="";
 		while(continuar){
 			continuar2=true;
+			estatus="Apagado";
 			System.out.println("-------Radio------");
-			System.out.println("Estatus: "+miradio.isOn());
+			System.out.println("Estatus: "+estatus);
 			System.out.println("Bienvenido a su radio \n1.Encender \n2.Salir");
 			op1 = teclado.nextInt();//variable de eleccion del usuario del menu principal
 			teclado.nextLine();//recibe eleccion 
@@ -34,7 +36,13 @@ public class Principal {
 				miradio.on();
 				while(continuar2){
 					System.out.println("-------Radio------");
-					System.out.println("Estatus: "+miradio.isOn());
+					if(miradio.isOn()){
+						estatus="Encendido";
+					}
+					else{
+						estatus="Apagado";
+					}
+					System.out.println("Estatus: "+estatus);
 					System.out.println("Frecuencia: "+miradio.getFrequence());
 					if(miradio.getFrequence()=="AM"){
 						System.out.println("Emisora: "+miradio.getAMActualStation());
